@@ -16,7 +16,7 @@ const db = mysql.createConnection({
 
     const { email, password } = req.body; 
 
-    db.query('SELECT * FROM user WHERE email = ?', [email], async (error, results) => {
+    db.query('SELECT * FROM seller WHERE email = ?', [email], async (error, results) => {
         if(error) {
             console.log(error); 
         } 
@@ -25,9 +25,10 @@ const db = mysql.createConnection({
                 message: 'No Profile Found!!'
             }); 
         }
-
-        const verified = bcrypt.compareSync(password, results[0].password); 
-        
+        console.log('jsjsk');
+       // console.log(results[0].password)
+        const verified = bcrypt.compareSync(password, results[0].hashkey); 
+        console.log('nextttt')
         console.log(verified); 
 
         if (verified == true) {
@@ -45,11 +46,12 @@ const db = mysql.createConnection({
 }
 
 exports.register = (req, res) => {
-    console.log(req.body); 
+    console.log('hiii')
+     console.log(req.body); 
 
-    const { name, email, password, passwordConfirm} = req.body; 
+    const { name, email, password, passwordConfirm, gstIN, pan_num, add_line1, add_line2, contact, city, state, country, pincode} = req.body; 
 
-    db.query('SELECT email FROM user WHERE email = ?', [email], async (error, results) => {
+    db.query('SELECT email FROM seller WHERE email = ?', [email], async (error, results) => {
         if(error){
             console.log(error); 
         } 
@@ -66,16 +68,30 @@ exports.register = (req, res) => {
         let hashPassword =  bcrypt.hashSync(password, 8); 
         console.log(hashPassword); 
 
-        db.query('INSERT INTO user   SET ?', {name:name, email:email, password:hashPassword}, (error, results) => {
+        db.query('INSERT INTO seller   SET ?', {shop_name:name, email:email, hashkey:hashPassword, address_line1: add_line1, address_line2: add_line2, city: city, state: state, contact: contact, country: country, pincode: Number(pincode), gst_number: gstIN, pan_number: pan_num}, (error, results) => {
+            if(error){
+                console.log(error); 
+            } else {
+                db.query('SELECT userID FROM seller WHERE email = ?', [email], async (error, results) => {
+                    if(error){
+                        console.log(error); 
+                    } else {
+                        return res.render('register', {
+                            message: `User Registered with userID: ${results[0].userID}` 
+                        })
+                    }
+                }); 
+            }
+        });  
+        db.query('SELECT userID FROM seller WHERE email = ?', [email], async (error, results) => {
             if(error){
                 console.log(error); 
             } else {
                 return res.render('register', {
-                    message: 'User Registered'
+                    message: `User Registered with userID: ${results[0].userID}` 
                 })
             }
-        });  
-        
+        }); 
     }); 
 
 }
