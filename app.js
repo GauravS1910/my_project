@@ -24,7 +24,7 @@ app.use(express.urlencoded({extended: false}));
 // Parse JSON bodies (as sent by API clients)
 app.use(express.json()); 
 
-app.set('view engine', 'hbs'); 
+app.set('view engine', 'ejs'); 
 
 db.connect( (error) =>{
     if(error){
