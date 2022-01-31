@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="/style.css">
+    
+    <title>Document</title>
+</head>
+
+<body>
+    <nav>
+        <h4>Node MySQL</h4>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/login">Login</a></li>
+            <li><a href="/register">Register</a></li>
+        </ul>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="card">
+            <div class="card-header">
+                Add New Item
+            </div>
+            <div class="card-body">
+                <form action="/auth/register" method="POST">
+                    
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" id="name" name="name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" class="form-control" id="email" name="email">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contact">Contact</label>
+                        <input type="text" class="form-control" id="contact" name="contact">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="gstIN">GST Number</label>
+                        <input type="text" class="form-control" id="gstIN" name="gstIN">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pan_num">PAN Number</label>
+                        <input type="text" class="form-control" id="pan_num" name="pan_num">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="add_line1">Address Line 1</label>
+                        <input type="text" class="form-control" id="add_line1" name="add_line1">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="add_line2">Address Line 2</label>
+                        <input type="text" class="form-control" id="add_line2" name="add_line2">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="city">City</label>
+                        <input type="text" class="form-control" id="city" name="city">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="state">State</label>
+                        <input type="text" class="form-control" id="state" name="state">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pincode">Pin Code</label>
+                        <input type="text" class="form-control" id="pincode" name="pincode">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="country">Country</label>
+                        <input type="text" class="form-control" id="country" name="country">
+                    </div>
+                   
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" name="password">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="passwordConfirm">Confirm Password</label>
+                        <input type="password" class="form-control" id="passwordConfirm" name="passwordConfirm">
+                    </div>
+                    
+                    <br>
+
+                    <button type="submit" class="btn btn-primary">Register User</button>
+                </form>
+            </div>
+        </div>
+        <% if(typeof message !=='undefined') { %>
+            <h4 class="alert alert-danger mt-4"><%=message%></h4>
+        <%} %>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>

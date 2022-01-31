@@ -14,4 +14,11 @@ router.get('/login', (req, res) => {
     res.render('login'); 
 })
 
+router.get('/inventory', (req, res) => {
+    res.render('inventory');
+})
+
+router.get('/addItem', (req, res) => {
+    res.render('addItem');
+})
 module.exports = router; 
