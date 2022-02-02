@@ -42,11 +42,35 @@ const db = mysql.createConnection({
         }
 
     }); 
-
+    // var items = [
+    //     {
+    //         id: '123',
+    //         item_name: 'djd',
+    //         cost: '267',
+    //         present: true,
+    //         desc: {
+    //             jj: 'shh',
+    //             tdh: 'jdhd',
+    //             jfd: 'iff'
+    //         }
+    //     },
+    //     {
+    //         id: '113',
+    //         item_name: 'deejd',
+    //         cost: '26r7',
+    //         present: false,
+    //         desc: {
+    //             jj: 'sheth',
+    //             tdh: 'jdhgdd',
+    //             jfd: 'ifdhff',
+    //             fk: 'efbj'
+    //         }
+    //     }
+    // ];
+    // res.render('inventory', {items: items});
 }
 
 exports.register = (req, res) => {
-    console.log('hiii')
      console.log(req.body); 
 
     const { name, email, password, passwordConfirm, gstIN, pan_num, add_line1, add_line2, contact, city, state, country, pincode} = req.body; 

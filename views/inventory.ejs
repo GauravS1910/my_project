@@ -15,6 +15,7 @@
 </head>
 
 <body>
+  
     <nav>
         <h4>Node MySQL</h4>
         <ul>
@@ -42,16 +43,39 @@
                           <th scope="col">Present</th>
                           <th scope="col">Description</th>
                           <th scope="col">Edit</th>
-                          
                         </tr>
                       </thead>
-                      
+                      <tbody>  
+                        <% items.forEach(function (item) { %>
+                           <tr>  
+                               <td><%= item.id %></td>  
+                               <td><%= item.item_name %></td>
+                               <td><%= item.cost %></td>  
+                               <td>
+                                <form action="/auth/inventory" method="post">
+                                  <input type="hidden" name ="item_id" value="<%= item.id%>">
+                                  <label class="switch">
+                                    <input type="checkbox" name="presence" value="present" onChange="this.form.submit()" <%= item.present ? 'checked' : '' %>>
+                                    <span class="slider round"></span>
+                                  </label>
+                                </form>
+                               </td>
+                               <td>
+                                <% for(const [key, val] of Object.entries(item.desc)){  %>
+                                  <ul>
+                                    <li><b><%=key%></b> : <%=val%></li>
+                                  </ul>
+                                <%} %>
+                               </td>
+                               <td><a href="/addItem" class="btn btn-primary">Edit</a></td>
+                           </tr>                                   
+                        <% }) %>
+                        </tbody>
                     </table>
                   </div>
             </div>
         </div>
     </div>
-
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
